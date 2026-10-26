@@ -1,0 +1,10 @@
+# Editor and OS clutter
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Local Claude app settings
+.claude/
+
+# Cloudflare Wrangler cache, if you ever deploy from the CLI
+.wrangler/

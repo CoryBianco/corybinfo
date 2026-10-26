@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cory Bianco</title>
+  <meta name="description" content="Cory Bianco, senior engineer at Flock Safety. A living resume: what I'm working on, where I've worked, and what I've built.">
+  <link rel="canonical" href="https://coryb.info/">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Cory Bianco">
+  <meta property="og:description" content="Senior engineer at Flock Safety. A living resume: what I'm working on, where I've worked, and what I've built.">
+  <meta property="og:url" content="https://coryb.info/">
+
+  <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111112" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..600&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Cory Bianco",
+    "url": "https://coryb.info/",
+    "jobTitle": "Senior Engineer",
+    "worksFor": { "@type": "Organization", "name": "Flock Safety" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "The Ohio State University" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Johnson City", "addressRegion": "TN" },
+    "sameAs": ["https://github.com/CoryBianco"]
+  }
+  </script>
+</head>
+<body>
+  <main class="page">
+
+    <header class="intro">
+      <h1>Cory Bianco</h1>
+      <p class="role">Senior Engineer at Flock Safety · Johnson City, Tennessee</p>
+      <p class="lede">
+        I build the platforms other engineering teams ship on: microfrontends, deployment
+        pipelines, real-time notifications and the infrastructure underneath them. This page
+        is my living resume, and I keep it current.
+      </p>
+      <ul class="links">
+        <li><a href="https://github.com/CoryBianco" data-print="github.com/CoryBianco">GitHub</a></li>
+        <li><a href="mailto:corybdev@gmail.com" data-print="corybdev@gmail.com">Email</a></li>
+      </ul>
+    </header>
+
+    <section class="section web-only" aria-labelledby="now-h">
+      <h2 id="now-h">Now</h2>
+      <div class="section-body">
+        <!-- Update this whenever your focus changes -->
+        <p>
+          Building the frontend core platform at Flock Safety. Outside work I'm adding
+          expansions and polish to <a href="https://quacks.coryb.info">Quacks Online</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="experience-h">
+      <h2 id="experience-h">Experience</h2>
+      <div class="section-body">
+        <!--
+          Newest first. Each role shows its first few bullets; bullets with class="extra"
+          sit behind a "Show N more" button on screen and always appear when printed.
+        -->
+        <article class="company">
+          <h3>Flock Safety</h3>
+          <div class="roles">
+
+            <div class="role">
+              <div class="entry-head">
+                <h4>Senior Engineer, Frontend Core</h4>
+                <span class="when">Feb 2024 – Present</span>
+              </div>
+              <ul id="flock-senior">
+                <li>Architected a microfrontend platform (Module Federation + rsbuild) and led 8 customer-facing teams through migrating their SPAs onto it.</li>
+                <li>Designed and built an in-app Notification Center: a Go processor consuming SQS, WebSocket delivery, a shared React component library and a TypeScript BFF. It has delivered millions of notifications since launch.</li>
+                <li>Wrote reusable, org-wide GitHub Actions that overhauled SPA deployment. A release-retention strategy keeps prior S3 bundles available, cutting missing-chunk errors by ~90%, and browser caching made repeat loads near-instant.</li>
+                <li>Production-hardened the feature-layer service with caching, autoscaling tuning, OpenTelemetry tracing and Auth0 fixes, cutting latency ~80% compared with calling Esri directly.</li>
+                <li>Own Terraform and Helm provisioning for the team, standing up the infrastructure (ingress, IAM/SSM scoping) that let a dozen-plus new internal services ship.</li>
+                <li class="extra">Sole member of a cross-functional team building products and services for other engineering teams and customers.</li>
+                <li class="extra">Designed shared-worker and IndexedDB patterns for sharing data across microfrontends.</li>
+                <li class="extra">Built a vanity-PR system with the SRE team, using repository dispatch, so teams can preview their PR rendered live inside the microfrontend before merge.</li>
+                <li class="extra">Built a scheduling service (EventBridge + SQS) that lets product teams run customer-defined recurring jobs.</li>
+                <li class="extra">Migrated auditing from DynamoDB to ClickHouse for much better performance and maintainability.</li>
+                <li class="extra">Rewrote navigation as a shared singleton library, replacing the nav logic each application's BFF used to determine on its own.</li>
+                <li class="extra">Go-to engineer for high-visibility fires, dropping into short-staffed teams for critical deployments. Most notably, stood up a new Case Management microservice and admin SPA, infra and CI included, from scratch under deadline.</li>
+                <li class="extra">Go-to person for design changes to the centralized React component library and design system.</li>
+                <li class="extra">Built observability dashboards for Node services, Datadog RUM monitoring for SPAs, synthetic uptime tests and Playwright tests in CI/CD.</li>
+                <li class="extra">Wrote custom AI skills that make complex workflows easier for engineers with limited context.</li>
+                <li class="extra">Interviewed 20+ candidates for software engineering roles.</li>
+              </ul>
+              <button type="button" class="text-btn more-btn" aria-expanded="false" aria-controls="flock-senior">Show more</button>
+            </div>
+
+            <div class="role">
+              <div class="entry-head">
+                <h4>Software Engineer III, Real Time &amp; Alerting</h4>
+                <span class="when">Feb 2023 – Feb 2024</span>
+              </div>
+              <ul id="flock-se3">
+                <li>Team lead: onboarded new engineers and mentored interns on working in a production environment.</li>
+                <li>Led the migration from Jenkins to GitHub Actions across all team repositories.</li>
+                <li>Developed a custom map layer system that lets customers link their existing map layers via OAuth 2.0 or upload shapefiles to generate new ones.</li>
+                <li>Contributed to the open-source pg_featureserv to serve Flock devices on the map more efficiently, closing a security vulnerability in the process.</li>
+                <li class="extra">Built a suite of map interface tools on the ArcGIS Core libraries, adapting their web components to work in React.</li>
+                <li class="extra">Built a commenting system for LPR alerts so users across agencies can discuss specific alerts.</li>
+                <li class="extra">Redesigned the entire alerts experience for a new design system, with full responsive design.</li>
+                <li class="extra">Created Slack bots that alert the team when each step of a deployment is ready.</li>
+                <li class="extra">Partially led scrum and other product and agile activities for the team.</li>
+              </ul>
+              <button type="button" class="text-btn more-btn" aria-expanded="false" aria-controls="flock-se3">Show more</button>
+            </div>
+
+            <div class="role">
+              <div class="entry-head">
+                <h4>Software Engineer II, Real Time &amp; Alerting</h4>
+                <span class="when">Mar 2022 – Feb 2023</span>
+              </div>
+              <ul>
+                <li>Helped build the initial map view on Google Maps, designing SVG icons and custom logic to render each device's field of view.</li>
+              </ul>
+            </div>
+
+          </div>
+        </article>
+
+        <article class="company">
+          <h3>Cerner <span class="org">(Oracle)</span></h3>
+          <div class="roles">
+            <div class="role">
+              <div class="entry-head">
+                <h4>Software Engineer I</h4>
+                <span class="when">Aug 2020 – Feb 2022</span>
+              </div>
+              <ul>
+                <li>Worked on a vulnerability viewer and data processor: JavaScript for the UI, Ruby on Rails for routing, Java for the backend and Python for data ingestion and processing.</li>
+                <li>Built a STIG viewer to review and process vulnerabilities for servers across the Cerner ecosystem.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="projects-h">
+      <h2 id="projects-h">Projects</h2>
+      <div class="section-body">
+        <article class="entry">
+          <div class="entry-head">
+            <h3><a href="https://quacks.coryb.info" data-print="quacks.coryb.info">Quacks Online<span class="arrow" aria-hidden="true">↗</span></a></h3>
+            <span class="when">2026</span>
+          </div>
+          <p>
+            A multiplayer, in-browser version of the board game <i>The Quacks of Quedlinburg</i>.
+            Friends join a lobby with a four-letter code, bots fill empty seats, and spectators
+            can watch. It supports all three expansions and has a generated soundtrack. Games
+            run on the server and sync to every player over WebSockets.
+          </p>
+          <p class="stack">TypeScript · Node.js · WebSockets · Railway</p>
+        </article>
+
+        <!-- To add a project, copy the <article> above. -->
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <div class="section-body">
+        <dl class="skills">
+          <div><dt>Languages</dt><dd>TypeScript, JavaScript, Python, Go, Java</dd></div>
+          <div><dt>Frontend</dt><dd>React, Module Federation, IndexedDB, WebSockets, Shared Workers</dd></div>
+          <div><dt>Backend &amp; infra</dt><dd>AWS (SQS, SNS, EventBridge, S3, CloudFront, IAM), Terraform, Helm, Kubernetes, GitHub Actions, event-driven architecture, microservices, microfrontends</dd></div>
+          <div><dt>Data</dt><dd>PostgreSQL, ClickHouse, DynamoDB, Redis/Valkey</dd></div>
+          <div><dt>Observability</dt><dd>Datadog, OpenTelemetry, Playwright, Auth0</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="education-h">
+      <h2 id="education-h">Education</h2>
+      <div class="section-body">
+        <article class="entry">
+          <div class="entry-head">
+            <h3>B.S. Computer Science &amp; Engineering <span class="org">· The Ohio State University</span></h3>
+            <span class="when">2020</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <!-- Update this date whenever you edit the page -->
+      <p>Last updated <time datetime="2026-10">October 2026</time></p>
+      <button type="button" class="text-btn print-btn" id="print-btn">Save as PDF</button>
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById("print-btn").addEventListener("click", function () {
+      window.print();
+    });
+
+    document.querySelectorAll(".more-btn").forEach(function (btn) {
+      var list = document.getElementById(btn.getAttribute("aria-controls"));
+      var count = list.querySelectorAll(".extra").length;
+
+      function render() {
+        var open = btn.getAttribute("aria-expanded") === "true";
+        list.classList.toggle("is-open", open);
+        btn.textContent = open ? "Show less" : "Show " + count + " more";
+      }
+
+      btn.addEventListener("click", function () {
+        var open = btn.getAttribute("aria-expanded") !== "true";
+        btn.setAttribute("aria-expanded", String(open));
+        render();
+      });
+
+      render();
+    });
+  </script>
+</body>
+</html>
