@@ -14,64 +14,49 @@ My living resume. It's plain HTML and CSS in `public/` with no build step and no
 
 ## Previewing locally
 
+The quickest way is Python's built-in server:
+
 ```bash
 python -m http.server 8787 --directory public
 ```
 
 Then open http://localhost:8787.
 
-## Deploying to Cloudflare Pages
-
-### 1. Push to GitHub
-
-Create an empty repository, for example `CoryBianco/coryb.info`, then run this from this folder:
+To preview exactly what Cloudflare serves, including the headers from `_headers` and the 404 page, use Wrangler instead. It needs Node.js 22 or newer.
 
 ```bash
-git init
-git add .
-git commit -m "First version of coryb.info"
-git branch -M main
-git remote add origin https://github.com/CoryBianco/coryb.info.git
-git push -u origin main
+npx wrangler dev
 ```
 
-### 2. Create the Pages project
+## Deploying
 
-In the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Import an existing Git repository** and pick the repo.
+The site runs on Cloudflare Workers as a static-assets Worker named `corybinfo`, built from the `CoryBianco/corybinfo` GitHub repo.
 
-| Setting | Value |
+**Every push to `main` deploys the site.** Cloudflare runs `npx wrangler deploy`, which reads `wrangler.jsonc`:
+
+- `assets.directory` serves `public/` as the site root, so `README.md` and the rest of the repo stay private.
+- `not_found_handling: "404-page"` serves `public/404.html` for missing pages.
+- `name` must stay `corybinfo` to match the Worker in the dashboard.
+
+| Address | What it is |
 | --- | --- |
-| Framework preset | None |
-| Build command | *(leave empty)* |
-| Build output directory | `public` |
+| https://coryb.info | Production (custom domain on the Worker) |
+| https://www.coryb.info | Production (custom domain on the Worker) |
+| https://corybinfo.corybdev.workers.dev | The Worker's own URL |
 
-The first deploy gives you a `*.pages.dev` URL. After that, every push to `main` redeploys the site.
+To deploy from your machine instead of pushing, run `npx wrangler login` once, then `npx wrangler deploy`.
 
-### 3. Move coryb.info's DNS to Cloudflare
+## DNS
 
-Cloudflare Pages can only serve the bare domain (`coryb.info`) when Cloudflare runs the domain's DNS. Right now it's on Google's nameservers (`ns-cloud-b1` through `b4.googledomains.com`).
+Squarespace is still the registrar for coryb.info, but its nameservers point at Cloudflare (`brett.ns.cloudflare.com` and `laura.ns.cloudflare.com`), so all DNS is managed in Cloudflare.
 
-These are the records as of 2026-10-26:
-
-| Name | Type | Value | What to do |
+| Name | Type | Target | Notes |
 | --- | --- | --- | --- |
-| `coryb.info` | A | `73.76.253.85` | Delete. Pages replaces it. |
-| `www.coryb.info` | A | `73.76.253.85` | Delete. Pages replaces it. |
-| `quacks.coryb.info` | CNAME | `m95iaw1x.up.railway.app` | Keep, set to **DNS only** |
-| `_railway-verify.quacks.coryb.info` | TXT | `railway-verify=…` | Keep |
+| `coryb.info` | Worker custom domain | `corybinfo` | Created by Cloudflare. Manage it from the Worker's **Domains** tab, not by hand. |
+| `www.coryb.info` | Worker custom domain | `corybinfo` | Same as above |
+| `quacks` | CNAME | `m95iaw1x.up.railway.app` | Quacks on Railway. Keep it **DNS only**, so Railway handles its own HTTPS and WebSockets. |
+| `_railway-verify.quacks` | TXT | `railway-verify=…` | Railway's ownership check for the Quacks domain |
 
-There are no MX records, so moving the DNS can't affect email.
+There are no MX records, so nothing here affects email.
 
-`73.76.253.85` looks like a home Comcast IP, and it doesn't answer web requests. If something at home still uses it, like a game server or SSH, move that to its own name such as `home.coryb.info` first.
-
-1. In Cloudflare, go to **Add a domain**, enter `coryb.info` and choose the Free plan. It imports your existing records. Check that the Quacks CNAME and the Railway TXT record came across.
-2. Set the `quacks` CNAME to **DNS only** (grey cloud). Railway then keeps handling its own HTTPS and WebSockets.
-3. Delete the two `73.76.253.85` A records.
-4. Cloudflare shows you two nameservers. At the registrar for coryb.info (Squarespace Domains, if it was bought through Google Domains), replace the four `ns-cloud-b*.googledomains.com` entries with those two. If DNSSEC is on, turn it off at the registrar first.
-5. Wait for Cloudflare to mark the domain **Active**. This usually takes minutes but can take a few hours.
-
-### 4. Attach the domain
-
-In the Pages project, go to **Custom domains → Set up a custom domain** and add `coryb.info`, then add `www.coryb.info` the same way. Cloudflare creates the DNS records and the HTTPS certificate.
-
-Afterwards, check that https://coryb.info and https://quacks.coryb.info both load.
+**DNSSEC is currently off.** To turn it on, enable it under **DNS → Settings** in Cloudflare, then add the DS record Cloudflare shows on Squarespace's **DNSSEC** page. Never leave a DS record at Squarespace that doesn't match the nameservers in use: that takes the whole domain offline, Quacks included.

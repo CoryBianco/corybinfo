@@ -1,0 +1,10 @@
+// Cloudflare Workers config. The site is static: public/ is served as-is,
+// with public/_headers applied and public/404.html for missing pages.
+{
+  "name": "corybinfo",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}

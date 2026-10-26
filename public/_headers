@@ -1,4 +1,4 @@
-# Response headers Cloudflare Pages adds to every page.
+# Response headers Cloudflare adds to every page.
 
 /*
   X-Content-Type-Options: nosniff
