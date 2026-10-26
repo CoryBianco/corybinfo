@@ -1,44 +1,36 @@
 /* coryb.info: one page, no build step. Colors and fonts live in the tokens below. */
 
 :root {
-  --bg: #faf6f0;
-  --glow: rgba(214, 120, 64, 0.12);
-  --surface: #f4ede3;
-  --text: #2b2520;
-  --muted: #74685d;
-  --faint: #b0a497;
-  --rule: #e8dfd2;
-  --accent: #b4491a;
-  --on-accent: #fffaf4;
-  --accent-soft: rgba(180, 73, 26, 0.08);
-  --accent-mid: rgba(180, 73, 26, 0.3);
-  --shadow: rgba(90, 50, 20, 0.28);
+  --bg: #ffffff;
+  --text: #0b0b0b;
+  --muted: #595959;
+  --faint: #9a9a9a;
+  --rule: #0b0b0b;
+  --accent: #1d3bff;
+  --on-accent: #ffffff;
+  --highlight: #ffe94d;
+  --highlight-ink: #0b0b0b;
+  --block: #1d3bff;
+  --on-block: #ffffff;
 
-  --serif: "Fraunces", Georgia, "Times New Roman", serif;
-  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  --maxw: 46rem;
-  --label-w: 8.5rem;
+  --maxw: 52rem;
+  --label-w: 9.5rem;
   --line: 1.6;
-  --radius: 14px;
 
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1613;
-    --glow: rgba(236, 154, 102, 0.08);
-    --surface: #231e1a;
-    --text: #f0e8de;
-    --muted: #a8998b;
-    --faint: #6c6157;
-    --rule: #2f2823;
-    --accent: #ec9a66;
-    --on-accent: #1a1613;
-    --accent-soft: rgba(236, 154, 102, 0.1);
-    --accent-mid: rgba(236, 154, 102, 0.35);
-    --shadow: rgba(0, 0, 0, 0.6);
+    --bg: #0b0b0b;
+    --text: #f4f4f2;
+    --muted: #a3a3a3;
+    --faint: #5e5e5e;
+    --rule: #f4f4f2;
+    --accent: #8292ff;
+    --on-accent: #0b0b0b;
   }
 }
 
@@ -54,26 +46,25 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--bg);
-  background-image: radial-gradient(56rem 28rem at 10% -6rem, var(--glow), transparent 70%);
-  background-repeat: no-repeat;
+  background: var(--bg);
   color: var(--text);
-  font-family: var(--sans);
+  font-family: var(--font);
   font-size: 1rem;
   line-height: var(--line);
-  font-feature-settings: "cv11", "ss03";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--accent-mid);
+  background: var(--highlight);
+  color: var(--highlight-ink);
 }
 
 .page {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: clamp(3rem, 10vw, 6rem) 1rem 3rem;
+  counter-reset: section;
 }
 
 @media (min-width: 40rem) {
@@ -92,22 +83,20 @@ body {
 a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--accent-mid);
-  text-decoration-thickness: 1px;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
-  transition: color 120ms ease, text-decoration-color 120ms ease;
+  transition: color 120ms ease;
 }
 
 a:hover {
   color: var(--accent);
-  text-decoration-color: currentColor;
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 3px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 /* Intro */
@@ -116,44 +105,31 @@ button:focus-visible {
   margin-bottom: clamp(2.5rem, 7vw, 3.5rem);
 }
 
-.avatar {
-  display: grid;
-  place-items: center;
-  width: 3.75rem;
-  height: 3.75rem;
-  margin-bottom: 1.5rem;
-  border-radius: 50%;
-  background: var(--accent-soft);
-  box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--rule);
-  color: var(--accent);
-  font-family: var(--serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  font-variation-settings: "SOFT" 100;
-  letter-spacing: 0.02em;
-  object-fit: cover;
-}
-
 .intro h1 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(2.25rem, 7vw, 3rem);
-  font-weight: 600;
-  font-variation-settings: "SOFT" 100;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-size: clamp(3.25rem, 13vw, 6.75rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
 }
 
 .tagline {
-  margin: 0.6rem 0 0;
-  color: var(--muted);
+  display: inline-block;
+  margin: 1.4rem 0 0;
+  padding: 0.1rem 0.4rem;
+  background: var(--highlight);
+  color: var(--highlight-ink);
+  font-weight: 700;
 }
 
 .lede {
-  max-width: 35rem;
+  max-width: 38rem;
   margin: 1.25rem 0 0;
-  font-size: 1.125rem;
-  line-height: 1.6;
+  font-size: 1.3125rem;
+  font-weight: 500;
+  line-height: 1.45;
 }
 
 .actions {
@@ -167,49 +143,54 @@ button:focus-visible {
 }
 
 .actions a:not(.pill) {
-  color: var(--muted);
-}
-
-.actions a:not(.pill):hover {
-  color: var(--accent);
+  font-weight: 700;
 }
 
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.55rem 1.1rem;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--on-accent);
-  font-size: 0.9375rem;
-  font-weight: 500;
+  padding: 0.85rem 1.5rem;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-decoration: none;
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  text-transform: uppercase;
+  transition: background-color 120ms ease, color 120ms ease;
 }
 
 .pill:hover {
+  background: var(--accent);
   color: var(--on-accent);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px -8px var(--accent);
 }
 
-/* Sections: label on the left, content on the right (stacked on phones) */
+/* Sections: a big number and label on the left, content on the right (stacked on phones) */
 
 .section {
-  padding: 2.25rem 0;
-  border-top: 1px solid var(--rule);
+  counter-increment: section;
+  padding: 1.5rem 0 2.75rem;
+  border-top: 3px solid var(--rule);
 }
 
 .section h2 {
-  margin: 0 0 1rem;
-  color: var(--muted);
-  font-family: var(--serif);
-  font-size: 1.0625rem;
-  font-style: italic;
-  font-weight: 400;
-  font-variation-settings: "SOFT" 100;
-  line-height: calc(1rem * var(--line));
+  margin: 0 0 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.section h2::before {
+  content: counter(section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--accent);
+  font-size: 2.5rem;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 @media (min-width: 40rem) {
@@ -238,23 +219,11 @@ button:focus-visible {
 
 .now-dot {
   display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.55rem;
+  height: 0.55rem;
   margin-right: 0.6rem;
-  border-radius: 50%;
   background: var(--accent);
   vertical-align: 0.1em;
-  animation: pulse 2.6s ease-out infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 var(--accent-mid);
-  }
-  70%,
-  100% {
-    box-shadow: 0 0 0 0.5rem transparent;
-  }
 }
 
 /* Entries (projects, schools) */
@@ -275,18 +244,18 @@ button:focus-visible {
 .entry h3 {
   margin: 0;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--line);
 }
 
-.entry .org {
+.org {
   color: var(--muted);
   font-weight: 400;
 }
 
 .when {
-  color: var(--muted);
   font-size: 0.875rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -294,6 +263,7 @@ button:focus-visible {
 .section-body ul {
   margin: 0;
   padding-left: 1.1rem;
+  list-style: square;
 }
 
 .section-body li + li {
@@ -301,32 +271,27 @@ button:focus-visible {
 }
 
 .section-body li::marker {
-  color: var(--accent-mid);
+  color: var(--accent);
 }
 
-/* Companies: roles hang off a thin rule so promotions read as one run */
+/* Companies: roles hang off a cobalt rule so promotions read as one run */
 
 .company + .company {
-  margin-top: 2.25rem;
+  margin-top: 2.5rem;
 }
 
 .company h3 {
-  margin: 0 0 0.75rem;
-  font-family: var(--serif);
-  font-size: 1.1875rem;
-  font-weight: 600;
-  font-variation-settings: "SOFT" 100;
-  line-height: 1.4;
-}
-
-.company .org {
-  color: var(--muted);
-  font-weight: 400;
+  margin: 0 0 0.85rem;
+  font-size: 1.625rem;
+  font-weight: 800;
+  font-stretch: 115%;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
 .roles {
   padding-left: 1rem;
-  border-left: 2px solid var(--rule);
+  border-left: 3px solid var(--accent);
 }
 
 .role + .role {
@@ -336,7 +301,7 @@ button:focus-visible {
 .role h4 {
   margin: 0;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   line-height: var(--line);
 }
 
@@ -349,8 +314,8 @@ button:focus-visible {
 .js .more-btn {
   display: inline-block;
   margin-top: 0.6rem;
-  color: var(--muted);
   font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .js .extra {
@@ -361,21 +326,18 @@ button:focus-visible {
   display: list-item;
 }
 
-/* Project cards: the whole card is the link */
+/* Project cards: the whole card is the link, and it lights up yellow on hover */
 
 .project {
   position: relative;
   padding: 1.25rem 1.25rem 1.1rem;
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  background: var(--surface);
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  border: 3px solid var(--rule);
+  transition: background-color 120ms ease, color 120ms ease;
 }
 
 .project:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-mid);
-  box-shadow: 0 14px 30px -20px var(--shadow);
+  background: var(--highlight);
+  color: var(--highlight-ink);
 }
 
 .project .entry-head {
@@ -387,25 +349,34 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--serif);
-  font-size: 1.1875rem;
-  font-variation-settings: "SOFT" 100;
+  font-size: 1.625rem;
+  font-weight: 800;
+  font-stretch: 115%;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
 .project h3 a {
   text-decoration: none;
 }
 
+.project h3 a:hover {
+  color: inherit;
+}
+
 .project h3 a::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
 }
 
 .project-icon {
   flex: none;
   color: var(--accent);
+}
+
+.project:hover .project-icon {
+  color: var(--block);
 }
 
 .project p:last-child {
@@ -416,19 +387,22 @@ button:focus-visible {
   display: inline-block;
   margin-left: 0.25em;
   color: var(--faint);
-  font-family: var(--sans);
   font-weight: 400;
   transition: transform 150ms ease, color 150ms ease;
 }
 
 .project:hover .arrow {
-  color: var(--accent);
+  color: inherit;
   transform: translate(2px, -2px);
 }
 
 .stack {
   color: var(--muted);
   font-size: 0.875rem;
+}
+
+.project:hover .stack {
+  color: inherit;
 }
 
 /* Skills */
@@ -449,7 +423,7 @@ button:focus-visible {
 
 @media (min-width: 40rem) {
   .skills div {
-    grid-template-columns: 8rem 1fr;
+    grid-template-columns: 8.5rem 1fr;
     gap: 1rem;
     align-items: baseline;
   }
@@ -460,29 +434,28 @@ button:focus-visible {
 }
 
 .skills dt {
-  color: var(--muted);
+  font-weight: 700;
 }
 
 .skills dd {
   margin: 0;
 }
 
-.chips {
+.section-body .chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  padding: 0 !important;
+  padding: 0;
   list-style: none;
 }
 
 .chips li,
 .chips li + li {
   margin: 0;
-  padding: 0.1rem 0.65rem;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  background: var(--surface);
-  font-size: 0.875rem;
+  padding: 0.1rem 0.55rem;
+  border: 2px solid var(--rule);
+  font-size: 0.8125rem;
+  font-weight: 600;
   line-height: 1.6;
 }
 
@@ -490,24 +463,36 @@ button:focus-visible {
 
 .hello-card {
   margin: 0.5rem 0 2.5rem;
-  padding: clamp(1.5rem, 5vw, 2.25rem);
-  border-radius: calc(var(--radius) + 4px);
-  background: var(--accent-soft);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  background: var(--block);
+  color: var(--on-block);
 }
 
 .hello-card h2 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: 1.625rem;
-  font-weight: 600;
-  font-variation-settings: "SOFT" 100;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-size: clamp(2.25rem, 7vw, 3.5rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  text-transform: uppercase;
 }
 
 .hello-card p {
   max-width: 32rem;
-  margin: 0.6rem 0 1.4rem;
+  margin: 0.9rem 0 1.5rem;
+}
+
+.hello-card .pill {
+  background: var(--highlight);
+  color: var(--highlight-ink);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hello-card .pill:hover {
+  background: #ffffff;
+  color: var(--highlight-ink);
 }
 
 /* Footer */
@@ -518,8 +503,10 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem 1.5rem;
-  color: var(--muted);
+  padding-top: 1.25rem;
+  border-top: 3px solid var(--rule);
   font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .foot p {
@@ -533,21 +520,20 @@ button:focus-visible {
   color: inherit;
   font: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--accent-mid);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
   cursor: pointer;
 }
 
 .text-btn:hover {
   color: var(--accent);
-  text-decoration-color: currentColor;
 }
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation: none !important;
     transition: none !important;
   }
 }
@@ -557,15 +543,14 @@ button:focus-visible {
 @media print {
   :root {
     --bg: #fff;
-    --glow: transparent;
-    --surface: #fff;
     --text: #000;
     --muted: #444;
     --faint: #777;
-    --rule: #d0d0d0;
+    --rule: #000;
     --accent: #000;
-    --accent-soft: transparent;
-    --accent-mid: #999;
+    --highlight: transparent;
+    --block: transparent;
+    --on-block: #000;
     --line: 1.4;
   }
 
@@ -574,7 +559,6 @@ button:focus-visible {
   }
 
   body {
-    background: #fff;
     font-size: 10pt;
   }
 
@@ -592,17 +576,21 @@ button:focus-visible {
   }
 
   .intro h1 {
-    font-size: 22pt;
+    font-size: 26pt;
+    line-height: 1;
   }
 
   .tagline {
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
+    padding: 0;
+    font-weight: 600;
   }
 
   .lede {
     max-width: none;
     margin-top: 0.5rem;
     font-size: 10.5pt;
+    font-weight: 400;
   }
 
   .actions {
@@ -617,29 +605,34 @@ button:focus-visible {
     color: var(--text);
     font-size: inherit;
     font-weight: 400;
+    letter-spacing: 0;
     text-decoration: none;
+    text-transform: none;
   }
 
   a[data-print]::after {
     content: " " attr(data-print);
     color: var(--muted);
-    font-family: var(--sans);
     font-weight: 400;
   }
 
   .section {
     display: block;
     padding: 0.7rem 0;
+    border-top-width: 1.5px;
   }
 
   .section h2 {
     margin: 0 0 0.45rem;
+  }
+
+  .section h2::before {
+    display: inline;
+    margin: 0 0.6em 0 0;
     color: var(--text);
-    font-family: var(--sans);
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: inherit;
+    font-stretch: 100%;
+    letter-spacing: inherit;
   }
 
   .section h2,
@@ -661,7 +654,7 @@ button:focus-visible {
 
   .company h3,
   .project h3 {
-    font-size: 11.5pt;
+    font-size: 12pt;
   }
 
   .section h2,
@@ -687,6 +680,10 @@ button:focus-visible {
     margin-bottom: 0.4rem;
   }
 
+  .roles {
+    border-left-width: 2px;
+  }
+
   .role + .role {
     margin-top: 0.75rem;
   }
@@ -694,14 +691,13 @@ button:focus-visible {
   .project {
     padding: 0;
     border: 0;
-    background: none;
   }
 
   .project h3 a::before {
     display: none;
   }
 
-  .chips {
+  .section-body .chips {
     display: block;
   }
 
@@ -710,8 +706,8 @@ button:focus-visible {
     display: inline;
     padding: 0;
     border: 0;
-    background: none;
     font-size: inherit;
+    font-weight: 400;
   }
 
   .chips li:not(:last-child)::after {
@@ -720,12 +716,11 @@ button:focus-visible {
 
   .foot {
     padding-top: 0.75rem;
-    border-top: 1px solid var(--rule);
+    border-top-width: 1.5px;
   }
 
   /* Last, so nothing above can show these again */
   .screen-only,
-  .avatar,
   .arrow,
   .now-dot,
   .project-icon,
