@@ -12,13 +12,13 @@
   <meta property="og:description" content="Senior engineer at Flock Safety. A living resume: what I'm working on, where I've worked, and what I've built.">
   <meta property="og:url" content="https://coryb.info/">
 
-  <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#111112" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#faf6f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1613" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:opsz,wght@14..32,400..600&display=swap">
   <link rel="stylesheet" href="/styles.css">
   <script>document.documentElement.classList.add("js");</script>
 
@@ -40,16 +40,21 @@
   <main class="page">
 
     <header class="intro">
+      <!-- To use a photo instead, save it as public/avatar.jpg and replace this span with:
+           <img class="avatar" src="/avatar.jpg" alt="" width="60" height="60"> -->
+      <span class="avatar" aria-hidden="true">CB</span>
       <h1>Cory Bianco</h1>
-      <p class="role">Senior Engineer at Flock Safety · Johnson City, Tennessee</p>
+      <p class="tagline">Senior Engineer at Flock Safety · Johnson City, Tennessee</p>
       <p class="lede">
-        I build the platforms other engineering teams ship on: microfrontends, deployment
-        pipelines, real-time notifications and the infrastructure underneath them. This page
-        is my living resume, and I keep it current.
+        Hi! I build the platforms other engineering teams ship on: microfrontends,
+        deployment pipelines, real-time notifications and the infrastructure underneath
+        them. Off the clock, I make games for game night.
       </p>
-      <ul class="links">
+      <ul class="actions">
+        <li>
+          <a class="pill" href="mailto:corybdev@gmail.com" data-print="corybdev@gmail.com"><span class="screen-only">Say hello</span><span class="print-only">Email</span></a>
+        </li>
         <li><a href="https://github.com/CoryBianco" data-print="github.com/CoryBianco">GitHub</a></li>
-        <li><a href="mailto:corybdev@gmail.com" data-print="corybdev@gmail.com">Email</a></li>
       </ul>
     </header>
 
@@ -58,8 +63,9 @@
       <div class="section-body">
         <!-- Update this whenever your focus changes -->
         <p>
-          Building the frontend core platform at Flock Safety. Outside work I'm adding
-          expansions and polish to <a href="https://quacks.coryb.info">Quacks Online</a>.
+          <span class="now-dot" aria-hidden="true"></span>Building the frontend core platform at
+          Flock Safety. After hours I'm adding expansions and polish to
+          <a href="https://quacks.coryb.info">Quacks Online</a>.
         </p>
       </div>
     </section>
@@ -152,18 +158,28 @@
     </section>
 
     <section class="section" aria-labelledby="projects-h">
-      <h2 id="projects-h">Projects</h2>
+      <h2 id="projects-h">Side projects</h2>
       <div class="section-body">
-        <article class="entry">
+        <article class="entry project">
           <div class="entry-head">
-            <h3><a href="https://quacks.coryb.info" data-print="quacks.coryb.info">Quacks Online<span class="arrow" aria-hidden="true">↗</span></a></h3>
+            <h3>
+              <svg class="project-icon" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" fill="currentColor">
+                <circle cx="13" cy="6.5" r="2.2"/>
+                <circle cx="19.5" cy="4" r="1.5"/>
+                <circle cx="18" cy="9" r="1.1"/>
+                <rect x="4.5" y="12" width="23" height="3.2" rx="1.6"/>
+                <path d="M7 15.2h18c0 6.6-3.7 11.3-9 11.3S7 21.8 7 15.2z"/>
+                <path d="M10.5 25.5 9 29M21.5 25.5 23 29" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              <a href="https://quacks.coryb.info" data-print="quacks.coryb.info">Quacks Online<span class="arrow" aria-hidden="true">↗</span></a>
+            </h3>
             <span class="when">2026</span>
           </div>
           <p>
-            A multiplayer, in-browser version of the board game <i>The Quacks of Quedlinburg</i>.
-            Friends join a lobby with a four-letter code, bots fill empty seats, and spectators
-            can watch. It supports all three expansions and has a generated soundtrack. Games
-            run on the server and sync to every player over WebSockets.
+            A multiplayer, in-browser version of the board game <i>The Quacks of Quedlinburg</i>,
+            built for our game nights. Friends join a lobby with a four-letter code, bots fill
+            empty seats, and spectators can watch. It supports all three expansions and has a
+            generated soundtrack. Games run on the server and sync to every player over WebSockets.
           </p>
           <p class="stack">TypeScript · Node.js · WebSockets · Railway</p>
         </article>
@@ -176,11 +192,26 @@
       <h2 id="skills-h">Skills</h2>
       <div class="section-body">
         <dl class="skills">
-          <div><dt>Languages</dt><dd>TypeScript, JavaScript, Python, Go, Java</dd></div>
-          <div><dt>Frontend</dt><dd>React, Module Federation, IndexedDB, WebSockets, Shared Workers</dd></div>
-          <div><dt>Backend &amp; infra</dt><dd>AWS (SQS, SNS, EventBridge, S3, CloudFront, IAM), Terraform, Helm, Kubernetes, GitHub Actions, event-driven architecture, microservices, microfrontends</dd></div>
-          <div><dt>Data</dt><dd>PostgreSQL, ClickHouse, DynamoDB, Redis/Valkey</dd></div>
-          <div><dt>Observability</dt><dd>Datadog, OpenTelemetry, Playwright, Auth0</dd></div>
+          <div>
+            <dt>Languages</dt>
+            <dd><ul class="chips"><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>Go</li><li>Java</li></ul></dd>
+          </div>
+          <div>
+            <dt>Frontend</dt>
+            <dd><ul class="chips"><li>React</li><li>Module Federation</li><li>IndexedDB</li><li>WebSockets</li><li>Shared Workers</li></ul></dd>
+          </div>
+          <div>
+            <dt>Backend &amp; infra</dt>
+            <dd><ul class="chips"><li>AWS (SQS, SNS, EventBridge, S3, CloudFront, IAM)</li><li>Terraform</li><li>Helm</li><li>Kubernetes</li><li>GitHub Actions</li><li>Event-driven architecture</li><li>Microservices</li><li>Microfrontends</li></ul></dd>
+          </div>
+          <div>
+            <dt>Data</dt>
+            <dd><ul class="chips"><li>PostgreSQL</li><li>ClickHouse</li><li>DynamoDB</li><li>Redis/Valkey</li></ul></dd>
+          </div>
+          <div>
+            <dt>Observability</dt>
+            <dd><ul class="chips"><li>Datadog</li><li>OpenTelemetry</li><li>Playwright</li><li>Auth0</li></ul></dd>
+          </div>
         </dl>
       </div>
     </section>
@@ -197,9 +228,18 @@
       </div>
     </section>
 
+    <section class="hello-card web-only" aria-labelledby="hello-h">
+      <h2 id="hello-h">Say hello</h2>
+      <p>
+        Want to talk shop, compare notes on microfrontends, or get dealt into a game of
+        Quacks? My inbox is open.
+      </p>
+      <a class="pill" href="mailto:corybdev@gmail.com">corybdev@gmail.com</a>
+    </section>
+
     <footer class="foot">
       <!-- Update this date whenever you edit the page -->
-      <p>Last updated <time datetime="2026-10">October 2026</time></p>
+      <p>My living resume, last updated <time datetime="2026-10">October 2026</time></p>
       <button type="button" class="text-btn print-btn" id="print-btn">Save as PDF</button>
     </footer>
 

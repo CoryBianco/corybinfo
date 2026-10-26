@@ -7,7 +7,8 @@ My living resume. It's plain HTML and CSS in `public/` with no build step and no
 - All the content is in `public/index.html`.
 - Under Experience, each role shows its first few bullets. Give any other bullet `class="extra"` and it goes behind a **Show N more** button. Extra bullets always appear when the page is printed.
 - Update the "Now" section and the "Last updated" date in the footer whenever you change something.
-- Colors are tokens at the top of `public/styles.css`, with a light and a dark set.
+- Colors and fonts are tokens at the top of `public/styles.css`, with a light and a dark set. Headings use Fraunces and body text uses Inter, both from Google Fonts.
+- The "CB" circle at the top is a placeholder for a photo. Save one as `public/avatar.jpg` and swap it in using the comment above the monogram in `index.html`.
 - **Save as PDF** prints the page. The print styles at the bottom of `styles.css` turn it into a black-on-white resume of about two pages, without the "Now" section.
 - The phone number from the PDF resume is left off on purpose, because this page is public.
 
